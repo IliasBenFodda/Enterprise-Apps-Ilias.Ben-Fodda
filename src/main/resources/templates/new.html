@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Nieuw evenement</title>
+</head>
+<body>
+
+<h1>Nieuw evenement aanmaken</h1>
+
+<form th:action="@{/new/evenement}" th:method="post" th:object="${evenementForm}">
+
+    <div>
+        <label for="titel">Titel</label>
+        <input type="text" id="titel" th:field="*{titel}">
+        <span th:if="${#fields.hasErrors('titel')}" th:errors="*{titel}"></span>
+    </div>
+
+    <div>
+        <label for="omschrijving">Omschrijving</label>
+        <textarea id="omschrijving" th:field="*{omschrijving}"></textarea>
+        <span th:if="${#fields.hasErrors('omschrijving')}" th:errors="*{omschrijving}"></span>
+    </div>
+
+    <div>
+        <label for="tijdstip">Tijdstip</label>
+        <input type="datetime-local" id="tijdstip" th:field="*{tijdstip}">
+        <span th:if="${#fields.hasErrors('tijdstip')}" th:errors="*{tijdstip}"></span>
+    </div>
+
+    <div>
+        <label for="organisatie">Organisatie</label>
+        <input type="text" id="organisatie" th:field="*{organisatie}">
+        <span th:if="${#fields.hasErrors('organisatie')}" th:errors="*{organisatie}"></span>
+    </div>
+
+    <div>
+        <label for="emailContactpersoon">E-mail contactpersoon</label>
+        <input type="email" id="emailContactpersoon" th:field="*{emailContactpersoon}">
+        <span th:if="${#fields.hasErrors('emailContactpersoon')}" th:errors="*{emailContactpersoon}"></span>
+    </div>
+
+    <div>
+        <label for="locatieId">Locatie</label>
+        <select id="locatieId" th:field="*{locatieId}">
+            <option value="">-- Kies een locatie --</option>
+            <option th:each="loc : ${locaties}"
+                    th:value="${loc.id}"
+                    th:text="${loc.naam}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('locatieId')}" th:errors="*{locatieId}"></span>
+    </div>
+
+    <button type="submit">Evenement opslaan</button>
+</form>
+
+<hr>
+
+<h2>Nieuwe locatie toevoegen</h2>
+
+<form th:action="@{/new/locatie}" th:method="post" th:object="${locatie}">
+
+    <div>
+        <label for="naam">Naam</label>
+        <input type="text" id="naam" th:field="*{naam}">
+        <span th:if="${#fields.hasErrors('naam')}" th:errors="*{naam}"></span>
+    </div>
+
+    <div>
+        <label for="adres">Adres</label>
+        <input type="text" id="adres" th:field="*{adres}">
+        <span th:if="${#fields.hasErrors('adres')}" th:errors="*{adres}"></span>
+    </div>
+
+    <div>
+        <label for="capaciteit">Capaciteit</label>
+        <input type="number" id="capaciteit" th:field="*{capaciteit}" min="1">
+        <span th:if="${#fields.hasErrors('capaciteit')}" th:errors="*{capaciteit}"></span>
+    </div>
+
+    <button type="submit">Locatie toevoegen</button>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
