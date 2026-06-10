@@ -1,11 +1,15 @@
 package be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.service;
 
+import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.dto.EvenementDetailDto;
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.dto.EvenementForm;
+import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.dto.EvenementOverzichtDto;
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.model.Evenement;
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.model.Locatie;
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.repository.EvenementRepository;
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.repository.LocatieRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EvenementService {
@@ -17,6 +21,28 @@ public class EvenementService {
                             LocatieRepository locatieRepository) {
         this.evenementRepository = evenementRepository;
         this.locatieRepository = locatieRepository;
+    }
+
+    public List<EvenementOverzichtDto> getRecenteEvenementen() {
+        return evenementRepository.findTop10ByOrderByTijdstipDesc().stream()
+                .map(e -> new EvenementOverzichtDto(e.getId(), e.getTitel(), e.getOrganisatie()))
+                .toList();
+    }
+
+    public EvenementDetailDto getEvenementDetail(Long id) {
+        Evenement e = evenementRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Evenement niet gevonden: " + id));
+        return new EvenementDetailDto(
+                e.getId(),
+                e.getTijdstip(),
+                e.getTitel(),
+                e.getOmschrijving(),
+                e.getOrganisatie(),
+                e.getEmailContactpersoon(),
+                e.getLocatie().getNaam(),
+                e.getLocatie().getAdres(),
+                e.getLocatie().getCapaciteit()
+        );
     }
 
     public void saveEvenement(EvenementForm form) {

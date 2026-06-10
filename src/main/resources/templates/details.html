@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenement details</title>
+</head>
+<body>
+
+<h1 th:text="${evenement.titel}"></h1>
+
+<p><strong>Tijdstip:</strong> <span th:text="${evenement.tijdstip}"></span></p>
+<p><strong>Omschrijving:</strong> <span th:text="${evenement.omschrijving}"></span></p>
+<p><strong>Organisatie:</strong> <span th:text="${evenement.organisatie}"></span></p>
+<p><strong>E-mail contactpersoon:</strong> <span th:text="${evenement.emailContactpersoon}"></span></p>
+
+<h2>Locatie</h2>
+<p><strong>Naam:</strong> <span th:text="${evenement.locatieNaam}"></span></p>
+<p><strong>Adres:</strong> <span th:text="${evenement.locatieAdres}"></span></p>
+<p><strong>Capaciteit:</strong> <span th:text="${evenement.locatieCapaciteit}"></span></p>
+
+<a th:href="@{/}">Terug naar overzicht</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

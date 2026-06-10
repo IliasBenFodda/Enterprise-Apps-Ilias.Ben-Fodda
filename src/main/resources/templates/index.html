@@ -2,10 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Evenementen</title>
 </head>
 <body>
-<p>Test</p>
+
+<h1>Recente evenementen</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Organisatie</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="evenement : ${evenementen}">
+        <td th:text="${evenement.titel}"></td>
+        <td th:text="${evenement.organisatie}"></td>
+        <td>
+            <a th:href="@{/evenementen/{id}(id=${evenement.id})}">Details</a>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(evenementen)}">
+        <td colspan="3">Geen evenementen gevonden.</td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/new}">Nieuw evenement toevoegen</a>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>
