@@ -26,4 +26,9 @@ public class HomeController {
         model.addAttribute("evenement", evenementService.getEvenementDetail(id));
         return "details";
     }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
 }

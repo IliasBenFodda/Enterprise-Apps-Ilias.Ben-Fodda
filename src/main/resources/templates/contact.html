@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1>Contact</h1>
+
+<form th:action="@{/contact}" th:method="post" th:object="${contactForm}">
+
+    <div>
+        <label for="naam">Naam</label>
+        <input type="text" id="naam" th:field="*{naam}">
+        <span th:if="${#fields.hasErrors('naam')}" th:errors="*{naam}"></span>
+    </div>
+
+    <div>
+        <label for="email">E-mailadres</label>
+        <input type="email" id="email" th:field="*{email}">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div>
+        <label for="onderwerp">Onderwerp</label>
+        <input type="text" id="onderwerp" th:field="*{onderwerp}">
+        <span th:if="${#fields.hasErrors('onderwerp')}" th:errors="*{onderwerp}"></span>
+    </div>
+
+    <div>
+        <label for="bericht">Bericht</label>
+        <textarea id="bericht" th:field="*{bericht}"></textarea>
+        <span th:if="${#fields.hasErrors('bericht')}" th:errors="*{bericht}"></span>
+    </div>
+
+    <button type="submit">Verstuur bericht</button>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
