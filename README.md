@@ -42,3 +42,4 @@ Ga naar http://localhost:8080
     - Vraag gesteld in Intellij aan copilot: "Ik wil een query om de 10 meest recente evenementen op te halen uit de
       database"
 - Gebruik van model bij formulieren om data aan pagina te geven: https://www.baeldung.com/thymeleaf-list
+- Gebruik van ai voor kleine vragen
