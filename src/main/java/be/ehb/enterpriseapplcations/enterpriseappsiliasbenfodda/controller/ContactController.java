@@ -1,6 +1,8 @@
 package be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.controller;
 
 import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.dto.ContactForm;
+import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.model.EmailModel;
+import be.ehb.enterpriseapplcations.enterpriseappsiliasbenfodda.services.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/contact")
 public class ContactController {
 
+    private final EmailService emailService;
+
+    public ContactController(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
     @GetMapping
     public String showContactForm(Model model) {
         model.addAttribute("contactForm", new ContactForm());
@@ -26,7 +34,15 @@ public class ContactController {
         if (bindingResult.hasErrors()) {
             return "contact";
         }
-        // email moet nog verstuurt worden
+
+        EmailModel email = new EmailModel();
+        email.setFrom(contactForm.getEmail());
+        email.setTo("ngo@anderlecht.be");
+        email.setSubject(contactForm.getOnderwerp());
+        email.setBody("Van: " + contactForm.getNaam() + "\n\n" + contactForm.getBericht());
+
+        emailService.sendEmail(email);
+
         return "redirect:/";
     }
 }
