@@ -7,13 +7,24 @@ git clone https://github.com/IliasBenFodda/Enterprise-Apps-Ilias.Ben-Fodda.git
 cd Enterprise-Apps-Ilias.Ben-Fodda
 ```
 
-### 2. Start de applicatie
+### 2. Voeg een mailtrap account toe
+
+Om gebruik te kunnen maken van de mail van de applicatie moet je een extra `application-local.properties` file toevoegen
+aan de
+`src/main/resources` map. Deze file moet de volgende properties bevatten om zelf mails te kunnen ontvangen:
+
+```properties
+spring.mail.username=Jouw eigen username
+spring.mail.password=Jouw eigen password
+```
+
+### 3. Start de applicatie
 
 ```bash
 mvn spring-boot:run
 ```
 
-### 3. Open in de browser
+### 4. Open in de browser
 
 Ga naar http://localhost:8080
 
@@ -31,4 +42,3 @@ Ga naar http://localhost:8080
     - Vraag gesteld in Intellij aan copilot: "Ik wil een query om de 10 meest recente evenementen op te halen uit de
       database"
 - Gebruik van model bij formulieren om data aan pagina te geven: https://www.baeldung.com/thymeleaf-list
-- 
