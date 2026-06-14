@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Evenementen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen flex flex-col">
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Recente evenementen</h1>
+<main class="flex-1 max-w-6xl mx-auto w-full px-4 py-10">
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-bold text-blue-900">Recente evenementen</h1>
+        <a th:href="@{/new}"
+           class="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md shadow transition-colors">
+            + Nieuw evenement
+        </a>
+    </div>
 
-<table>
-    <thead>
-    <tr>
-        <th>Titel</th>
-        <th>Organisatie</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="evenement : ${evenementen}">
-        <td th:text="${evenement.titel}"></td>
-        <td th:text="${evenement.organisatie}"></td>
-        <td>
-            <a th:href="@{/evenementen/{id}(id=${evenement.id})}">Details</a>
-        </td>
-    </tr>
-    <tr th:if="${#lists.isEmpty(evenementen)}">
-        <td colspan="3">Geen evenementen gevonden.</td>
-    </tr>
-    </tbody>
-</table>
-
-<a th:href="@{/new}">Nieuw evenement toevoegen</a>
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+        <table class="w-full text-sm text-left">
+            <thead class="bg-blue-800 text-white text-xs uppercase tracking-wider">
+            <tr>
+                <th class="px-6 py-4">Titel</th>
+                <th class="px-6 py-4">Organisatie</th>
+                <th class="px-6 py-4 text-right">Actie</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+            <tr th:each="evenement : ${evenementen}"
+                class="hover:bg-blue-50 transition-colors">
+                <td class="px-6 py-4 font-medium text-gray-800" th:text="${evenement.titel}"></td>
+                <td class="px-6 py-4 text-gray-600" th:text="${evenement.organisatie}"></td>
+                <td class="px-6 py-4 text-right">
+                    <a th:href="@{/evenementen/{id}(id=${evenement.id})}"
+                       class="text-blue-700 hover:text-blue-900 font-semibold underline underline-offset-2">
+                        Details →
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(evenementen)}">
+                <td colspan="3" class="px-6 py-8 text-center text-gray-400 italic">Geen evenementen gevonden.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 

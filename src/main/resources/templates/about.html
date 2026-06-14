@@ -3,32 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Over ons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen flex flex-col">
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Over ons</h1>
+<main class="flex-1 max-w-4xl mx-auto w-full px-4 py-10">
+    <h1 class="text-3xl font-bold text-blue-900 mb-8">Over ons</h1>
 
-<h2>Wie zijn wij?</h2>
-<p>
-    Een Anderlechtse NGO die zich inzet voor gemeenschapsopbouw en hulp aan mensen die het minder breed hebben.
-</p>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
-    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+    <div class="bg-white rounded-xl shadow p-8 space-y-8">
 
-<h2>Adres</h2>
-<address>
-    Nijverheidskaai 170<br>
-    1070 Anderlecht
-</address>
+        <section>
+            <h2 class="text-xl font-semibold text-blue-800 border-l-4 border-red-600 pl-3 mb-3">Wie zijn wij?</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Een Anderlechtse NGO die zich inzet voor gemeenschapsopbouw en hulp aan mensen die het minder breed
+                hebben.
+            </p>
+            <p class="text-gray-600 leading-relaxed mt-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum.
+            </p>
+        </section>
 
-<h2>Contact</h2>
-<p>Telefoon: <a href="tel:+3225233737">02 523 37 37</a></p>
+        <section>
+            <h2 class="text-xl font-semibold text-blue-800 border-l-4 border-red-600 pl-3 mb-3">Adres</h2>
+            <address class="not-italic text-gray-700">
+                <p>Nijverheidskaai 170</p>
+                <p>1070 Anderlecht</p>
+            </address>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold text-blue-800 border-l-4 border-red-600 pl-3 mb-3">Contact</h2>
+            <p class="text-gray-700">
+                Telefoon:
+                <a href="tel:+3225233737"
+                   class="text-blue-700 hover:text-blue-900 font-medium underline underline-offset-2">
+                    02 523 37 37
+                </a>
+            </p>
+        </section>
+
+    </div>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 

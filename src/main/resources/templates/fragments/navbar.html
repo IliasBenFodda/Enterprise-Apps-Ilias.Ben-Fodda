@@ -2,11 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<nav th:fragment="navbar">
-    <a th:href="@{/}">NGO ANDERLECHT</a>
-    <a th:href="@{/new}">Nieuw evenement</a>
-    <a th:href="@{/about}">Over ons</a>
-    <a th:href="@{/contact}">Contact</a>
+<nav th:fragment="navbar" class="bg-blue-800 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a th:href="@{/}" class="text-white text-xl font-bold tracking-wide hover:text-blue-200 transition-colors">
+            NGO Anderlecht
+        </a>
+        <div class="flex gap-6">
+            <a th:href="@{/new}" class="text-blue-100 hover:text-white font-medium transition-colors">Nieuw
+                evenement</a>
+            <a th:href="@{/about}" class="text-blue-100 hover:text-white font-medium transition-colors">Over ons</a>
+            <a th:href="@{/contact}" class="text-blue-100 hover:text-white font-medium transition-colors">Contact</a>
+        </div>
+    </div>
 </nav>
 
 </body>

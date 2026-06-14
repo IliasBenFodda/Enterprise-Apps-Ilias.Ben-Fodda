@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Enterprise Apps Ilias.BenFodda
+mail:
+  host:sandbox.smtp.mailtap.io
+  port: 587
+  username: 35e6dedb6a96c14
+  password: 5586f73ffbc7cc
+  properties:
+  mail:
+  smtp:
+  auth:true
+  starttls:
+  enable:true
